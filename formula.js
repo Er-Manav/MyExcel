@@ -66,10 +66,16 @@ formulaBar.addEventListener("keydown", async (e)=>{
         addChildToGraphComponent(expression, address);
 
         //check formula is cyclic or not active
-        let iscyclic = isGraphCyclic(graphComponentMatrix);
-        if(iscyclic){
-            alert("Entered formula is cyclic")
- ;
+        let cycleResponse = isGraphCyclic(graphComponentMatrix);
+        if(cycleResponse){
+            let res = confirm("Entered formula is cyclic! Do you wanna trace where cycle is forming?");
+            while(res){
+                //keep on tracing path until users cancel
+                await isGraphCyclicTracePath(graphComponentMatrix,cycleResponse);
+                //to see color tracking we have to sunc this code also so that same result is visible;
+
+                res = confirm("Entered formula is cyclic! Do you wanna trace where cycle is forming?");
+            }
             removeChildFromGraphComponent(expression,address);
 
             return;
