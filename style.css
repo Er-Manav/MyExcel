@@ -216,11 +216,12 @@ body{
 }
 .sheet-content{
     font-family: 'Source Sans Pro', sans-serif;
-    padding-left: 1rem;
+    padding: 0.5rem;
     text-decoration: underline;
     font-weight: bold;
     text-decoration-thickness: 2.5px;
     font-size: 0.8rem;
+    cursor: pointer;
 
 }
 

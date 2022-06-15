@@ -1,25 +1,32 @@
-let sheetDB = []
+let collectedSheetDB = [];
 
-for(let i = 0; i <rows; i++) {
-    let sheetRow = []
-    for(let j = 0; j < cols; j++) {
-        let cellProp = {
-            bold : false,
-            italic : false,
-            underline : false,
-            alignment : "left",
-            fontFamily: "monospace",
-            fontSize : 14,
-            fontColor : '#000000',
-            BGcolor: '#ffffff', //just for indication purpose
-            value : "",
-            formula: "",
-            children: []
-        }
-        sheetRow.push(cellProp);
-    }
-    sheetDB.push(sheetRow);
+let sheetDB = []
+{
+    let addSheetBtn = document.querySelector(".sheet-add-icon");
+    addSheetBtn.click();
 }
+
+// for(let i = 0; i <rows; i++) {
+//     let sheetRow = []
+//     for(let j = 0; j < cols; j++) {
+//         let cellProp = {
+//             bold : false,
+//             italic : false,
+//             underline : false,
+//             alignment : "left",
+//             fontFamily: "monospace",
+//             fontSize : 14,
+//             fontColor : '#000000',
+//             BGcolor: '#ffffff', //just for indication purpose
+//             value : "",
+//             formula: "",
+//             children: []
+//         }
+//         sheetRow.push(cellProp);
+//     }
+//     sheetDB.push(sheetRow);
+// }
+
 //selectors for cell properties
 // let addressBar = document.querySelector(".addressBar");
 let bold = document.querySelector(".bold")
@@ -192,10 +199,6 @@ function updateUIcell(cell){
 
         formulaBar.value = cellProp.formula //? cellProp.formula : cellProp.value 
         cell.value = cellProp.value
-        
-
-
-
     })
 }
 

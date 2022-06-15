@@ -51,6 +51,3 @@ function displayCell(cell,i,j){
 // storage k liye matrix 
 // for each cell we can use object
 
-//by default active first cell via DOM
-let firstCell = document.querySelector(".cell");
-firstCell.click();
