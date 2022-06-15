@@ -62,8 +62,19 @@ formulaBar.addEventListener("keydown", async (e)=>{
             removeChildFromParent(cellProp.formula)
         }
         
+        addChildToGraphComponent(expression,address);
+        //check formula is cyclic or not active
+        let iscyclic = isGraphCyclic(graphComponentMatrix);
+        if(iscyclic){
+            alert(Entered formula is cyclic);
+            removeChildFromGraphComponent(expression,address);
+            return;
+        }
+
+
         //update UI and sheetDB
         let evaluatedValue = evaluateFormula(expression)
+
         setCellUIandCellProp(evaluatedValue, expression, address) 
         addChildtoParent(expression);
         updateChildrenCells(address);
@@ -97,6 +108,32 @@ function addChildtoParent(formula){
             if(!parentCellProp.children.includes(childAddress)){
                 parentCellProp.children.push(childAddress);
             }
+        }
+    }
+}
+
+function addChildToGraphComponent(formula,childAddress){
+    let [crid,ccid] = getActiveCell(childAddress); //child rowID and colID
+
+    let encodedFormula = formula.split(" ");
+    for(let i = 0; i <encodedFormula.length ; i++){
+        let asciiValue = encodedFormula[i].charCodeAt(0);
+        if(asciiValue >= 65 && asciiValue <=90){
+            let [parentRID,parentCID]= getActiveCell(encodedFormula[i]);
+            // B1 : A1 + 10
+            graphComponentMatrix[parentRID][parentCID].push([crid,ccid]);
+        }
+    }
+}
+function removeChildFromGraphComponent(formula,childAddress){
+    let [crid,ccid] = getActiveCell(childAddress); //child rowID and colID
+
+    let encodedFormula = formula.split(" ");
+    for(let i = 0; i <encodedFormula.length ; i++){
+        let asciiValue = encodedFormula[i].charCodeAt(0);
+        if(asciiValue >= 65 && asciiValue <=90){
+            let [parentRID,parentCID]= getActiveCell(encodedFormula[i]);
+            graphComponentMatrix[parentRID][parentCID].pop();
         }
     }
 }
