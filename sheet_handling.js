@@ -12,6 +12,7 @@ addSheetBtn.addEventListener("click",(e)=>{
     <div class="sheet-content" >Sheet${allSheetsFolders.length+1}</div>
     `;
     sheetsFolderCont.appendChild(sheet);
+    sheet.scrollIntoView();
 
     //Storage DB
     createSheetDB();

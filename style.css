@@ -23,10 +23,17 @@ body{
     align-items: flex-end;
     color: #ffffff;
     padding: 0 1rem;
+    cursor: pointer;
 }
 
 .page-action{
-    margin: 0.5rem;
+    margin: 0 0.5rem;
+    padding: 0.1rem 0.5rem;
+}
+.page-action-selected{
+    background-color: var(--action-bg-color);
+    color: #127033;
+    font-weight: bold;
 }
 
 .cellprop-action-cont {
